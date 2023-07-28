@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.adrian.ec3.santiago.databinding.ItemNoteBinding
 import com.adrian.ec3.santiago.model.Card
+import com.bumptech.glide.Glide
 
 class RVYugiListAdapter (var cards: List<Card>): RecyclerView.Adapter<NoteVH>()  {
 
@@ -28,6 +29,11 @@ class NoteVH(private val binding: ItemNoteBinding): RecyclerView.ViewHolder(bind
         binding.txtContentNote.text = card.type
         binding.txtLablesNote.text = card.attribute
         binding.txtCreateNote.text = card.race
+
+        val imageUrl = card.card_images[0].image_url
+        Glide.with(binding.root.context)
+            .load(imageUrl)
+            .into(binding.imageView)
 
     }
 
